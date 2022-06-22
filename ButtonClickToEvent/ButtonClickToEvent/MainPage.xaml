@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:buttonclicktoevent="clr-namespace:ButtonClickToEvent" 
+             x:DataType="buttonclicktoevent:MainPageViewModel"
+             x:Class="ButtonClickToEvent.MainPage">
+
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <StackLayout>
+                <Label Text="Event to Command Demo" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+                <Entry x:Name="entryIncrement" Text="2" Placeholder="Integer Increase by" PlaceholderColor="Green"></Entry>
+            </StackLayout>
+        </Frame>
+        <Label x:Name="labelClicked" Text="{Binding IncreaseCount, StringFormat='you clicked {0} times'}" FontSize="Title" Padding="30,10,30,10"/>
+
+        <Button x:Name="btnChangeText" Text="Increase Count" BackgroundColor="OrangeRed">
+            <Button.Behaviors>
+                <xct:EventToCommandBehavior EventName="Clicked" Command="{Binding ButtonClickCommand}" CommandParameter="{Binding Source={x:Reference entryIncrement}}" />
+            </Button.Behaviors>
+        </Button>
+    </StackLayout>
+</ContentPage>
